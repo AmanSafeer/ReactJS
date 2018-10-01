@@ -1,0 +1,62 @@
+
+h1{
+  text-transform: uppercase;
+  color: brown;
+  font-size: 50px;
+  margin: auto;
+  padding: 0px;
+}
+.container{
+  text-align: center;
+    width: 70%;
+    margin: 0px auto;
+    background: white;
+    padding: 10px;
+}
+
+table{
+  min-width: 100%;
+  max-width: 100%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: antiquewhite;
+
+}
+tr{
+  border-bottom: 1px solid lightgray;
+}
+td{
+  padding: 10px;
+}
+.todoName{
+  text-transform: uppercase;
+  font-size: 25px;
+  padding: 10px;
+  word-break: break-word;
+
+}
+.button{
+  margin: 20px 5px;
+  padding: 15px;
+  border: none;
+  font-weight: bold;
+  color: white;
+  border-radius:10px;
+  width: 80px; 
+  cursor: pointer;
+}
+.button:active{
+  border: 3px inset white;
+}
+.add{
+  background: #0404AD;
+}
+.edit{
+  background: #BE7704;
+}
+.delete{
+  background: #B90505;
+}
+.save{
+  background: orange;
+}
