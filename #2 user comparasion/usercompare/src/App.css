@@ -1,0 +1,16 @@
+
+.container{
+  width: 80%;
+  margin: 0px auto
+}
+.form{
+  background: white;
+    padding: 30px;
+}
+.example{
+  display: block;
+    margin: 10px auto;
+    width: fit-content;
+    color: gray;
+}
+

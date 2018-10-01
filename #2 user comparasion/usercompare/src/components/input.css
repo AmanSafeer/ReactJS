@@ -1,0 +1,12 @@
+
+.form-group{
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+}
+.form-user,.form-control{
+    display: block;
+    width: 95%;
+    padding: 10px;
+    display: inline-block;
+}
