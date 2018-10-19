@@ -19,11 +19,11 @@ class App extends Component{
         <div>
           <div className="menu">
           <Link to="/">Registration</Link>
-          <Link to="/list">Users</Link>
+          <Link to="/users">Users</Link>
           </div>
 
           <Route exact path="/" component={Registration}/>
-          <Route path="/list/" component={List}/>
+          <Route path="/users/" component={List}/>
           <Route exact path="/details/:id" component={Details}/>
         </div>
       </Router>

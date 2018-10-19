@@ -11,7 +11,7 @@ class List extends Component{
       super(props);
       this.state = {
         // users:users
-        usersArr:[],
+        users:[]
       }
     }
     
@@ -19,36 +19,43 @@ class List extends Component{
       this.props.history.push(`/details/${id}`)
     }
     
+      render(){
+        // console.log(this.state.users)
+        const {classes} = this.props
+        return(
+          <div className ="list">
+            <h1>Users list</h1>
+            {(this.state.users=="")?
+            <p>Waiting for users...</p>
+            :
+            <table >
+              <thead><tr><td>Id</td><td>Name</td><td></td></tr></thead>
+              <tbody>
+            {this.state.users.map((user,i) =>
+              <tr key={i}><td>0{user.id}</td><td>{user.name}</td><td><Button variant="contained" className={classes.button}  onClick={()=>this.details(user.id)}>Show Details</Button></td></tr>
+            )}
+              </tbody>
+            </table>}
+          </div>
+        )
+      }
+
     componentDidMount(){
       this.ref.child("users").on("value", (data)=>{
+        let usersArr=[];
         let usersData = data.val();
         if(usersData){
-        let usersKeys = Object.keys(usersData)
-        console.log(usersKeys) 
-        this.setState({usersArr:usersKeys, usersDetails:usersData})
+          // console.log(usersData)
+          for(var i=0; i<usersData.length;i++){
+            usersArr.push(usersData[i])
         }
-      })
-    } 
-      render(){
-        console.log(this.state.usersArr)
-        const {classes} = this.props
-      return(
-        <div className ="list">
-          <h1>Users list</h1>
-          {(this.state.usersArr=="")?
-          <p>Waiting for users...</p>
-          :
-          <table >
-            <thead><tr><td>Id</td><td>Name</td><td></td></tr></thead>
-            <tbody>
-          {this.state.usersArr.map((user,i) =>
-            <tr key={i}><td>{this.state.usersDetails[this.state.usersArr[i]].id}</td><td>{this.state.usersDetails[this.state.usersArr[i]].name}</td><td><Button variant="contained" className={classes.button}  onClick={()=>this.details(this.state.usersDetails[this.state.usersArr[i]].id)}>Show Details</Button></td></tr>
-            )}
-            </tbody>
-          </table>}
-        </div>
-    )}
+        this.setState({users:usersArr})
+        }
+      }) 
+    }   
 }
+
+
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,

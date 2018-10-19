@@ -14,7 +14,7 @@ class Registration extends Component{
             name:'',
             email:'',
             user:{},
-            // list:[]
+            list:[]
         }
     }
    
@@ -26,30 +26,35 @@ class Registration extends Component{
     
     submitForm = event =>{
         event.preventDefault();
+        let usersArr = this.state.list.slice(0);
         let user;
         user = this.state.user;
         user.id = this.state.id
         user.name = this.state.name;
         user.email = this.state.email;
-        // listArr = this.state.list.slice(0);
+        
         if(user.id === "" || user.name === "" || user.email === ""){
             alert("please fill all input fields")
             return;
         }
-        // listArr.push(user);
-        this.ref.child("users").push(user)
+        usersArr.push(user); 
+
+        this.ref.child("users").set(usersArr)
+        
         this.setState({
             id:'',
             name:'',
             email:'',
             user:{},
-            // list:[]
+            list:usersArr
         })
+
+        
     };
 
 
     render(){
-        // console.log(this.state.user)
+        // console.log(this.state.list)
         const {classes}=this.props;
         return (
         <div className="form">    
@@ -62,9 +67,24 @@ class Registration extends Component{
             </form>  
         </div>
         )
-    }
+    };
+
+    componentDidMount(){
+        this.ref.child("users").on("value", (data)=>{
+        let usersData = data.val();
+        let listArr=[];
+        if(usersData){
+            for(var i=0; i<usersData.length;i++){
+                   listArr.push(usersData[i])
+               }
+        }
+        this.setState({list:listArr})
+        })
+    };
 
 }
+
+
 const styles = theme => ({
     textField: {
       marginLeft: theme.spacing.unit,
