@@ -1,2 +1,2 @@
 # REACT JS
-React JS codes 
+React JS Assignments
